@@ -1,6 +1,7 @@
 package com.redux.rank;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -16,9 +17,11 @@ public class RankManager {
         for (String id : section.getKeys(false)){
             String displayName = section.getString(id + ".display-name");
 
+            
             int expRequire = section.getInt(id + ".exp-require");
             String nextRank = section.getString(id + ".next");
-
+            List<String> commands = section.getStringList(id + ".commands");
+            int levelRank = section.getInt(id + ".level");
             Rank rank = new Rank(id, displayName, nextRank, expRequire);
 
             ranks.put(id, rank);
