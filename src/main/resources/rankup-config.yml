@@ -1,0 +1,24 @@
+rank_config:
+  level-max: 100
+  
+
+ranks:
+  default:
+    display-name: "Sin rango"
+    next: "novice"
+    exp-require: 10
+
+  novice:
+    display-name: "Novato"
+    next: "apprentice"
+    exp-require: 100
+
+  apprentice:
+    display-name: "Aprendiz"
+    next: "explorer"
+    level: 15
+
+  explorer:
+    display-name: "Explorador"
+    next: "warrior"
+    level: 20

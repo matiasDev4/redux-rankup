@@ -1,0 +1,15 @@
+name: ReduxRankup
+version: '1.0.0'
+main: com.redux.ReduxMain
+description: Rankup avanzado
+author: MatiasDev
+api-version: '1.21'
+
+commands:
+  rankup:
+    description: Sube al siguiente rango
+    usage: /rankup
+
+  rank:
+    description: Muestra tu rango actual
+    usage: /rank
