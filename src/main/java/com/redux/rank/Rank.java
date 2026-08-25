@@ -1,37 +1,37 @@
 package com.redux.rank;
 
+import java.util.List;
+
 public class Rank {
     private final String id;
     private final String displayName;
-    private final String nextRank;
-    private final int expRequire;
+    private final List<String> commands;
+
+
 
     public Rank(
         String id,
         String displayName,
-        String nextRank,
-        int expRequire
+        List<String> commands
+
     ) {
         this.id = id;
         this.displayName = displayName;
-        this.expRequire = expRequire;
-        this.nextRank = nextRank;
+        this.commands = commands;
+
     }
 
     public String getId() {
         return id;
-    }
-    
-    public int getExpRequire() {
-        return expRequire;
     }
 
     public String getDisplayName() {
         return displayName;
     }
 
-    public String getNextRank() {
-        return nextRank;
+
+    public List<String> getCommands() {
+        return commands;
     }
 
 }

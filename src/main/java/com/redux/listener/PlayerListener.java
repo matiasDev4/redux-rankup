@@ -15,36 +15,30 @@ import com.redux.player.PlayerData;
 import com.redux.player.PlayerRankManager;
 import com.redux.rank.Rank;
 import com.redux.rank.RankManager;
+import com.redux.services.ProgressionService;
 
 public class PlayerListener implements Listener {
     private PlayerRankManager playerRank;
     private BreakBlockManager breakBlockManager;
     private RankManager rankManager;
+    private ProgressionService progressionService;
     private final Logger logger;
 
     public PlayerListener(
         Logger logger, 
         PlayerRankManager playerRank, 
         BreakBlockManager breakBlockManager,
-        RankManager rankManager
+        RankManager rankManager,
+        ProgressionService progressionService
         
     ) {
         this.logger = logger;
         this.playerRank = playerRank;
         this.breakBlockManager = breakBlockManager;
         this.rankManager = rankManager;
+        this.progressionService = progressionService;
     }
-    private String createProgressBar(int current, int max) {
-
-        int bars = 20;
-
-        double percentage = (double) current / max;
-
-        int completed = (int) (percentage * bars);
-
-        return "█".repeat(completed)
-                + "░".repeat(bars - completed);
-    }
+    
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         try {
@@ -65,66 +59,14 @@ public class PlayerListener implements Listener {
         if (player.getGameMode() == GameMode.CREATIVE) return;
 
         Block current_block = block.getBlock();
-        Integer block_value = breakBlockManager.getValueBlock(current_block.getType());
-
+        Double block_value = breakBlockManager.getValueBlock(current_block.getType());
+  
         if (block_value == null) return;
         
-        PlayerData playerData = playerRank.getPlayer(player.getUniqueId());
-        if (playerData == null) return;
-
-        Rank rank = rankManager.getRank(playerData.getRank());
-        if (rank == null){
-            logger.warning("No se encontro el rango");
-            return;
-        }
-        if (rank.getNextRank() == null) return; // si no exite otro rango, no pasa
-
-        playerData.addExperience(block_value);
-        String progress = createProgressBar(
-            playerData.getExperience(),
-            rank.getExpRequire()
-        );
-
-        String text = rank.getDisplayName()
-            + " "
-            + progress
-            + " "
-            + playerData.getExperience()
-            + "/"
-            + rank.getExpRequire();
-        
-        player.sendActionBar(
-            Component.text(text)
-        );
-
-        while (
-            rank.getNextRank() != null &&
-            playerData.getExperience() >= rank.getExpRequire()
-        ) {
-
-            playerData.addExperience(
-                playerData.getExperience() -
-                rank.getExpRequire()
-            );
-
-            playerData.setRank(
-                rank.getNextRank()
-            );
-
-            rank =
-                rankManager.getRank(
-                    playerData.getRank()
-                );
-
-            player.sendMessage(
-                "Subiste de rango! " +
-                rank.getDisplayName()
-            );
-        }
-
+  
 
     }
-
+        
     // Sumar experiencia al matar mobs
 
 }

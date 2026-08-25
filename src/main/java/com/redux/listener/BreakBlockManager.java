@@ -7,7 +7,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 
 public class BreakBlockManager {
-    private final HashMap<Material, Integer> breakBlocks = new HashMap<>();
+    private final HashMap<Material, Double> breakBlocks = new HashMap<>();
 
     public BreakBlockManager(FileConfiguration config) {
         ConfigurationSection section = config.getConfigurationSection("blocks");
@@ -21,17 +21,17 @@ public class BreakBlockManager {
                 continue;
             }
 
-            int value = section.getInt(id);
+            Double value = section.getDouble(id);
 
             breakBlocks.put(material, value);
         }
     }
 
-    public Integer getValueBlock(Material id){
+    public Double getValueBlock(Material id){
         return breakBlocks.get(id);
     } 
 
-    public HashMap<Material, Integer> getBlocks() {
+    public HashMap<Material, Double> getBlocks() {
         return breakBlocks;
     }
 }

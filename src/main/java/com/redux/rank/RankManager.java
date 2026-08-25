@@ -9,26 +9,33 @@ import org.bukkit.configuration.file.FileConfiguration;
 public class RankManager {
     private final HashMap<String, Rank> ranks = new HashMap<>();
 
+
     public RankManager(FileConfiguration config) {
         ConfigurationSection section = config.getConfigurationSection("ranks");
 
+
+
         if (section == null) return;
+  
 
         for (String id : section.getKeys(false)){
             String displayName = section.getString(id + ".display-name");
 
-            
-            int expRequire = section.getInt(id + ".exp-require");
-            String nextRank = section.getString(id + ".next");
             List<String> commands = section.getStringList(id + ".commands");
-            int levelRank = section.getInt(id + ".level");
-            Rank rank = new Rank(id, displayName, nextRank, expRequire);
+
+
+            Rank rank = new Rank(id, displayName, commands);
 
             ranks.put(id, rank);
         }
+
+
+
     }
 
     public Rank getRank(String id) {
         return ranks.get(id);
     }
+
+
 }

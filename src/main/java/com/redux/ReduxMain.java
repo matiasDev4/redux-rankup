@@ -8,6 +8,7 @@ import com.redux.listener.BreakBlockManager;
 import com.redux.listener.PlayerListener;
 import com.redux.player.PlayerRankManager;
 import com.redux.rank.RankManager;
+import com.redux.services.ProgressionService;
 
 public final class ReduxMain extends JavaPlugin {
 
@@ -26,11 +27,11 @@ public final class ReduxMain extends JavaPlugin {
 
         RankManager rankManager = new RankManager(rankConfig.getConfig());
         BreakBlockManager breakBlockManager = new BreakBlockManager(breakBlockConfig.getConfig());
-        
+        ProgressionService progressionService = new ProgressionService(playerRankManager, rankManager);
         
         getServer()
         .getPluginManager()
-        .registerEvents(new PlayerListener(getLogger(), playerRankManager, breakBlockManager, rankManager), this);
+        .registerEvents(new PlayerListener(getLogger(), playerRankManager, breakBlockManager, rankManager, progressionService), this);
 
         getCommand("rank")
         .setExecutor(new RankupCommand(playerRankManager));

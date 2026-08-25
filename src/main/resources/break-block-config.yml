@@ -1,7 +1,7 @@
 blocks:
-  STONE: 0.20
-  DIR: 0.10
-  DIAMOND_ORE: 200
-  EMERALD_ORE: 150
+  STONE: 5
+  DIR: 1
+  DIAMOND_ORE: 25
+  EMERALD_ORE: 30
   
 

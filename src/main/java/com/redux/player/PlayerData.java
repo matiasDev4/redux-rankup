@@ -4,24 +4,19 @@ public class PlayerData {
 
     private String username;
     private int levelRank;
-    private int experience;
     private String rank;
 
     public PlayerData(String username) {
         this.username = username;
-        this.levelRank = 0;
+        this.levelRank = 1;
         this.rank = "default";
     }
 
     public int getLevelRank() {
         return levelRank;
     }
-    public int getExperience() {
-        return experience;
-    }
-    public void addExperience(int block_value) {
-        experience += block_value;
-    }
+
+
 
     public String getRank() {
         return rank;
