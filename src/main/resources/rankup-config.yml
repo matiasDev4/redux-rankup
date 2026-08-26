@@ -9,11 +9,11 @@ ranks:
 
     requirements:
       - type: MONEY
-        amount: 100
+        value: 100
 
       - type: MINE_BLOCK
         block_type: STONE
-        quantity: 100
+        value: 100
 
     commands:
       - "[console] lp user %player% set parent %rank%"

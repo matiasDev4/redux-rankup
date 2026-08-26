@@ -1,38 +1,26 @@
 package com.redux.player;
 
+import java.util.UUID;
+
 public class PlayerData {
+    private final UUID uuid;
+    private final String username;
+    private final String rankName;
+    
 
-    private String username;
-    private int levelRank;
-    private String rank;
-
-    public PlayerData(String username) {
+    public PlayerData(
+        UUID uuid,
+        String username,
+        String rankName
+    ) {
+        this.uuid = uuid;
         this.username = username;
-        this.levelRank = 1;
-        this.rank = "default";
-    }
-
-    public int getLevelRank() {
-        return levelRank;
+        this.rankName = rankName;
     }
 
 
-
-    public String getRank() {
-        return rank;
-    }
-
-    public void setRank(String rank) {
-        this.rank = rank;
-    }
-
-    public void setLevelRank(int levelRank) {
-        this.levelRank = levelRank;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-
-}   
+    public String getRankName() {return rankName;}
+    public String getUsername() {return username;}
+    public UUID getUUID() {return uuid;}
+    
+}
